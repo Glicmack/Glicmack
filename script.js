@@ -78,41 +78,9 @@ function showMessage(message, type) {
 
 // Submit to Email Service
 async function submitToEmailService(email) {
-    // OPTION 1: Mailchimp Integration
-    // Replace with your Mailchimp endpoint
-    /*
-    const MAILCHIMP_URL = 'YOUR_MAILCHIMP_URL';
-    const response = await fetch(MAILCHIMP_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email_address: email,
-            status: 'subscribed'
-        })
-    });
-    */
+    // Formspree Integration (ACTIVE)
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjkjrrnp';
     
-    // OPTION 2: ConvertKit Integration
-    // Replace with your ConvertKit Form ID
-    /*
-    const CONVERTKIT_FORM_ID = 'YOUR_FORM_ID';
-    const CONVERTKIT_API_KEY = 'YOUR_API_KEY';
-    const response = await fetch(`https://api.convertkit.com/v3/forms/${CONVERTKIT_FORM_ID}/subscribe`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            api_key: CONVERTKIT_API_KEY,
-            email: email
-        })
-    });
-    */
-    
-    // OPTION 3: Formspree (Easiest - No Backend Required)
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // Replace with your Formspree ID
     const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -120,7 +88,8 @@ async function submitToEmailService(email) {
         },
         body: JSON.stringify({
             email: email,
-            _subject: 'New GLICMACK Waitlist Signup'
+            _subject: 'New GLICMACK Waitlist Signup',
+            _replyto: email
         })
     });
     

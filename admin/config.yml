@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: Glicmack/Glicmack
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "blog-posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Category", name: "category", widget: "select", options: ["Development Update", "Technical Deep Dive", "Founder Journey", "Industry Insights"]}
+      - {label: "Read Time", name: "readtime", widget: "string", default: "5 min read"}
+      - {label: "Description", name: "description", widget: "text", hint: "Brief summary for the blog preview card"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
